@@ -56,4 +56,29 @@ public class ProductRepository {
         }
         return null;
     }
+
+    public Product isNameAlreadyContainedInList(Product productToCheck){
+        for(Product aProduct : this.products){
+            if(aProduct.getName().equals(productToCheck.getName())){
+                productToCheck = null;
+                return productToCheck;
+            }
+        }
+        return productToCheck;
+    }
+
+    public Product isNameAlreadyContainedInList(int id, Product productToCheck){
+        for(Product aProduct : this.products){
+            if(aProduct.getName().equals(productToCheck.getName()) && aProduct.getId() != id){
+                productToCheck = null;
+                return productToCheck;
+            }
+        }
+        return productToCheck;
+    }
+
+    public List<Product> getAllProductsByCategory(String category){
+        return this.products.stream()
+                .filter(s -> s.getCategory().equals(category)).toList();
+    }
 }
